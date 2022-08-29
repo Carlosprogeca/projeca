@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Interface.login_fragment">
+    tools:context=".ui.Interface.local_entrega">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,74 +15,53 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/lblUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="User" />
-
             <EditText
-                android:id="@+id/txtUser"
+                android:id="@+id/txtClient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                />
-
-            <TextView
-                android:id="@+id/lblPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Password" />
+                android:text="Cliente" />
 
             <EditText
-                android:id="@+id/txtPassword"
+                android:id="@+id/txtContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPersonName"
+                android:text="Contato" />
+
+            <EditText
+                android:id="@+id/txtLogradouro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Logradouro" />
+
+            <EditText
+                android:id="@+id/txtBairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Bairro" />
+
+            <EditText
+                android:id="@+id/txtId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="CPF" />
 
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnClient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="OnClick"
-                android:text="Entrar"
+                android:text="PRÓXIMO"
                 app:backgroundTint="#FF2A2A" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="User Name" />
-
-            <EditText
-                android:id="@+id/txtCadUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="New Password" />
-
-            <EditText
-                android:id="@+id/txtCadPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword" />
-
-            <Button
-                android:id="@+id/btnCadastro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="Click"
-                android:text="Cadastre-se"
-                app:backgroundTint="#FF2A2A" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

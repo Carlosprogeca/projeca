@@ -22,4 +22,10 @@
         android:name="dev.delivery.project.deliverymanagment.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_login_fragment"
+        android:name="dev.delivery.project.deliverymanagment.ui.Interface.login_fragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login_fragment" />
 </navigation>
