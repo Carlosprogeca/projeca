@@ -48,12 +48,29 @@
                 android:text="Bairro" />
 
             <EditText
-                android:id="@+id/txtId"
+                android:id="@+id/txtCpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="CPF" />
+
+            <Spinner
+                android:id="@+id/spinnerveiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/opcoes_veiculo"/>
+
+            <Spinner
+                android:id="@+id/spinnervendedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/opcoes_vendedor"/>
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/btnClient"

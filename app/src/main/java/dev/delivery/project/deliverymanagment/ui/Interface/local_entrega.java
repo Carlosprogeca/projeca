@@ -7,15 +7,29 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import dev.delivery.project.deliverymanagment.R;
+import dev.delivery.project.deliverymanagment.ui.Classes.Local;
+import dev.delivery.project.deliverymanagment.ui.Classes.Login;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link local_entrega#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class local_entrega extends Fragment {
+public class local_entrega extends Fragment implements View.OnClickListener {
+
+    private View view;
+    private EditText txtClient;
+    private EditText txtLogradouro;
+    private EditText txtCpf;
+    private EditText txtBairro;
+    private EditText txtContact;
+    private Button btnEnvio;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +74,42 @@ public class local_entrega extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        this.txtClient = (EditText) view.findViewById(R.id.txtClient);
+        this.txtBairro= (EditText) view.findViewById(R.id.txtBairro);
+        this.txtCpf = (EditText) view.findViewById(R.id.txtCpf);
+        this.txtContact = (EditText) view.findViewById(R.id.txtContact);
+        this.txtLogradouro = (EditText) view.findViewById(R.id.txtLogradouro);
+        this.btnEnvio = (Button) view.findViewById(R.id.btnLogin);
+        //*****************
+        this.btnEnvio.setOnClickListener(this);
+        //----------------------------------
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_local_entrega, container, false);
+        this.view = inflater.inflate(R.layout.fragment_login_fragment, container, false);
+        return this.view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.btnLogin){
+            Local lcl = new Local();
+            lcl.setClient(this.txtClient.getText().toString());
+            lcl.setBairro(this.txtBairro.getText().toString());
+            //lcl.setCpf(this.txtCpf.getText().());
+            lcl.setLogradouro(this.txtLogradouro.getText().toString());
+            lcl.setContato(this.txtContact.getText().toString());
+
+            //msg
+            Snackbar mySnackbar = Snackbar.make(view, "Cliente " + lcl.getClient(), Snackbar.LENGTH_SHORT);
+            mySnackbar.show();
+
+            txtClient.setText("");
+            txtContact.setText("");
+            txtCpf.setText("");
+            txtBairro.setText("");
+            txtLogradouro.setText("");
+        }
     }
 }

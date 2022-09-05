@@ -11,11 +11,6 @@ public class Local {
     private int cpf;
     private int id;
 
-    public Local(String user, String password){
-        this.setUser(user);
-        this.setPassoword(password);
-    }
-
     public String getClient() {
         return client;
     }
@@ -63,13 +58,25 @@ public class Local {
     public void setId(int id) {
         this.id = id;
     }
+    //CONSTRUTOR - iniciazaliza atributos
+    public Local () {
+        this.setClient("");
+        this.setLogradouro("");
+        this.setBairro("");
+        this.setContato("");
+        this.setCpf(0);
+        this.setId(0);
+    }
 
     //CONSTRUTOR - inicializa atributos de um arquivo JSon
     public Local (JSONObject jp) {
         try {
-            Integer numero = (int) jp.get("id");
-            this.setUser((String) jp.get("nome"));
-            this.setPassoword((String) jp.get("senha"));
+            Integer id = (int) jp.get("id");
+            this.setClient((String) jp.get("cliente"));
+            this.setLogradouro((String) jp.get("logradouro"));
+            this.setBairro((String) jp.get("bairro"));
+            this.setContato((String) jp.get("contato"));
+            Integer cpf = (int) jp.get("cpf");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -78,8 +85,12 @@ public class Local {
     public JSONObject toJsonObject() {
         JSONObject json = new JSONObject();
         try {
-            json.put("user", this.user);
-            json.put("password", this.passoword);
+            json.put("cliente", this.client);
+            json.put("logradouro", this.logradouro);
+            json.put("bairro", this.bairro);
+            json.put("id", this.id);
+            json.put("cpf", this.cpf);
+            json.put("contato", this.contato);
         } catch (JSONException e) {
             e.printStackTrace();
         }

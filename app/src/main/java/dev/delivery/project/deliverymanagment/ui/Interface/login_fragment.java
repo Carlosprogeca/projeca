@@ -88,7 +88,10 @@ public class login_fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnLogin){
-            Login usr = new Login (txtUser.getText().toString(), txtPassword.getText().toString());
+            Login usr = new Login();
+            usr.setUser(this.txtUser.getText().toString());
+            usr.setPassword(this.txtPassword.getText().toString());
+
             //msg
             Snackbar mySnackbar = Snackbar.make(view, "Usuário " + usr.getUser(), Snackbar.LENGTH_SHORT);
             mySnackbar.show();
@@ -97,4 +100,5 @@ public class login_fragment extends Fragment implements View.OnClickListener {
             txtUser.setText("");
         }
     }
+
 }
