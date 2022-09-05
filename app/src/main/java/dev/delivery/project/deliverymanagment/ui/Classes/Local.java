@@ -3,13 +3,18 @@ package dev.delivery.project.deliverymanagment.ui.Classes;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Local {
     private String client;
     private String logradouro;
     private String bairro;
     private String contato;
     private int cpf;
-    private int id;
+    private boolean aceiteTermos;
+    private String data;
 
     public String getClient() {
         return client;
@@ -51,13 +56,26 @@ public class Local {
         this.cpf = cpf;
     }
 
-    public int getId() {
-        return id;
+    public void setAceiteTermos(boolean aceiteTermos) {
+        this.aceiteTermos = aceiteTermos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getData() {
+        return data;
     }
+
+    public void setData(String data) {
+        SimpleDateFormat formato =
+                new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date datafinal = (Date) formato.parse(data);
+    //se chegar até aqui não deu erro no parser
+            this.data = data;
+        } catch (ParseException e) {
+            this.data = "";
+        }
+    }
+
     //CONSTRUTOR - iniciazaliza atributos
     public Local () {
         this.setClient("");
@@ -65,18 +83,22 @@ public class Local {
         this.setBairro("");
         this.setContato("");
         this.setCpf(0);
-        this.setId(0);
+        this.setAceiteTermos(false);
+        this.setData("");
     }
 
     //CONSTRUTOR - inicializa atributos de um arquivo JSon
     public Local (JSONObject jp) {
         try {
-            Integer id = (int) jp.get("id");
+            Integer cpf = (int) jp.get("cpf");
             this.setClient((String) jp.get("cliente"));
             this.setLogradouro((String) jp.get("logradouro"));
             this.setBairro((String) jp.get("bairro"));
             this.setContato((String) jp.get("contato"));
-            Integer cpf = (int) jp.get("cpf");
+            boolean bool = Boolean.getBoolean(jp.get("aceite").toString());
+            this.setAceiteTermos(bool);
+            this.setData((String) jp.get("data"));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -88,9 +110,11 @@ public class Local {
             json.put("cliente", this.client);
             json.put("logradouro", this.logradouro);
             json.put("bairro", this.bairro);
-            json.put("id", this.id);
             json.put("cpf", this.cpf);
             json.put("contato", this.contato);
+            json.put("aceite", this.aceiteTermos);
+            json.put("data", this.data);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

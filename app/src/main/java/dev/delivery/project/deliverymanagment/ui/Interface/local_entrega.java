@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -30,6 +31,8 @@ public class local_entrega extends Fragment implements View.OnClickListener {
     private EditText txtBairro;
     private EditText txtContact;
     private Button btnEnvio;
+    private Spinner spinnervendedor;
+    private Spinner spinnerveiculo;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,6 +84,8 @@ public class local_entrega extends Fragment implements View.OnClickListener {
         this.txtCpf = (EditText) view.findViewById(R.id.txtCpf);
         this.txtContact = (EditText) view.findViewById(R.id.txtContact);
         this.txtLogradouro = (EditText) view.findViewById(R.id.txtLogradouro);
+        this.spinnervendedor = (Spinner) view.findViewById(R.id.spinnervendedor);
+        this.spinnerveiculo = (Spinner) view.findViewById(R.id.spinnerveiculo);
         this.btnEnvio = (Button) view.findViewById(R.id.btnLogin);
         //*****************
         this.btnEnvio.setOnClickListener(this);
@@ -97,9 +102,11 @@ public class local_entrega extends Fragment implements View.OnClickListener {
             Local lcl = new Local();
             lcl.setClient(this.txtClient.getText().toString());
             lcl.setBairro(this.txtBairro.getText().toString());
-            //lcl.setCpf(this.txtCpf.getText().());
+            //lcl.setCpf(this.txtCpf.getText());
             lcl.setLogradouro(this.txtLogradouro.getText().toString());
             lcl.setContato(this.txtContact.getText().toString());
+            //lcl. = (spinnerveiculo.getSelectedItem().toString());
+            //lcl. = (spinnervendedor.getSelectedItem().toString());
 
             //msg
             Snackbar mySnackbar = Snackbar.make(view, "Cliente " + lcl.getClient(), Snackbar.LENGTH_SHORT);

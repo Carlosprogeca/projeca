@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.BreakIterator;
 
 import dev.delivery.project.deliverymanagment.R;
+import dev.delivery.project.deliverymanagment.ui.Classes.Cadastro;
 import dev.delivery.project.deliverymanagment.ui.Classes.Login;
 
 /**
@@ -21,7 +24,8 @@ import dev.delivery.project.deliverymanagment.ui.Classes.Login;
  * create an instance of this fragment.
  *
  */
-public class login_fragment extends Fragment implements View.OnClickListener {
+public class login_fragment extends Fragment implements View.OnClickListener,
+        Response.Listener, Response.ErrorListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +38,9 @@ public class login_fragment extends Fragment implements View.OnClickListener {
     private String mParam2;
     private EditText txtUser;
     private EditText txtPassword;
+    private EditText txtCadEmail;
+    private EditText txtCadUser;
+    private EditText txtCadPassword;
     private Button btn;
     /**
      * Use this factory method to create a new instance of
@@ -75,6 +82,9 @@ public class login_fragment extends Fragment implements View.OnClickListener {
 
         this.txtPassword = (EditText) view.findViewById(R.id.txtPassword);
         this.txtUser = (EditText) view.findViewById(R.id.txtUser);
+        this.txtCadUser = (EditText) view.findViewById(R.id.txtCadUser);
+        this.txtCadPassword = (EditText) view.findViewById(R.id.txtCadPassword);
+        this.txtCadEmail = (EditText) view.findViewById(R.id.txtCadEmail);
         this.btn = (Button) view.findViewById(R.id.btnLogin);
         //*****************
         this.btn.setOnClickListener(this);
@@ -99,6 +109,30 @@ public class login_fragment extends Fragment implements View.OnClickListener {
             txtPassword.setText("");
             txtUser.setText("");
         }
+
+        if (view.getId() == R.id.btnCadastro){
+            Cadastro usr = new Cadastro();
+            usr.setCaduser(this.txtCadUser.getText().toString());
+            usr.setCadpassword(this.txtCadPassword.getText().toString());
+            usr.setCademail(this.txtCadEmail.getText().toString());
+
+            //msg
+            Snackbar mySnackbar = Snackbar.make(view, "Cadastrado ", Snackbar.LENGTH_SHORT);
+            mySnackbar.show();
+
+            txtCadUser.setText("");
+            txtCadPassword.setText("");
+            txtCadEmail.setText("");
+        }
     }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(Object response) {
+
+    }
 }
