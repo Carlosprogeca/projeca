@@ -15,6 +15,8 @@ public class Local {
     private int cpf;
     private boolean aceiteTermos;
     private String data;
+    private String veiculo;
+    private String vendedor;
 
     public String getClient() {
         return client;
@@ -64,16 +66,32 @@ public class Local {
         return data;
     }
 
+
     public void setData(String data) {
-        SimpleDateFormat formato =
-                new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date datafinal = (Date) formato.parse(data);
-    //se chegar até aqui não deu erro no parser
+            //se chegar até aqui não deu erro no parser
             this.data = data;
         } catch (ParseException e) {
             this.data = "";
         }
+    }
+
+    public String getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(String veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public String getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(String vendedor) {
+        this.vendedor = vendedor;
     }
 
     //CONSTRUTOR - iniciazaliza atributos
@@ -85,6 +103,8 @@ public class Local {
         this.setCpf(0);
         this.setAceiteTermos(false);
         this.setData("");
+        this.setVeiculo("");
+        this.setVendedor("");
     }
 
     //CONSTRUTOR - inicializa atributos de um arquivo JSon
@@ -98,6 +118,8 @@ public class Local {
             boolean bool = Boolean.getBoolean(jp.get("aceite").toString());
             this.setAceiteTermos(bool);
             this.setData((String) jp.get("data"));
+            this.setVeiculo((String) jp.get("veiculo"));
+            this.setVendedor((String) jp.get("vendedor"));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -114,6 +136,8 @@ public class Local {
             json.put("contato", this.contato);
             json.put("aceite", this.aceiteTermos);
             json.put("data", this.data);
+            json.put("veiculo", this.veiculo);
+            json.put("vendedor", this.vendedor);
 
         } catch (JSONException e) {
             e.printStackTrace();

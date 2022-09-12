@@ -10,20 +10,20 @@ public class Login {
     private String password;
 
     public String getUser () {
-            return user;
-        }
+        return user;
+    }
 
-        public void setUser (String user){
-            this.user = user;
-        }
+    public void setUser (String user){
+        this.user = user;
+    }
 
-        public String getPassword () {
-            return password;
-        }
+    public String getPassword () {
+        return password;
+    }
 
-        public void setPassword (String password){
-            this.password = password;
-        }
+    public void setPassword (String password){
+        this.password = password;
+    }
 
     //CONSTRUTOR - inicializa atributos de um arquivo JSon
     public Login (JSONObject jp) {

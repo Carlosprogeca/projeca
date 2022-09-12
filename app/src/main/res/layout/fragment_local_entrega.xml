@@ -71,12 +71,12 @@
                 android:entries="@array/opcoes_vendedor" />
 
             <CalendarView
-                android:id="@+id/calendarView"
+                android:id="@+id/calendario"
                 android:layout_width="match_parent"
                 android:layout_height="340dp" />
 
             <Button
-                android:id="@+id/btnClient"
+                android:id="@+id/btnEnvio"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:text="ENVIAR ENTREGA"

@@ -12,15 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="dev.delivery.project.deliverymanagment.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/local_entrega"
+        android:name="dev.delivery.project.deliverymanagment.ui.Interface.local_entrega"
+        android:label="fragment_local_entrega"
+        tools:layout="@layout/fragment_local_entrega" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="dev.delivery.project.deliverymanagment.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="dev.delivery.project.deliverymanagment.ui.notifications.NotificationsFragment"
+        android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment

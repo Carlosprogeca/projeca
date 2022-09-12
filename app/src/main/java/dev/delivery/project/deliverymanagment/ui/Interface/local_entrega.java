@@ -8,10 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import dev.delivery.project.deliverymanagment.R;
 import dev.delivery.project.deliverymanagment.ui.Classes.Local;
@@ -22,7 +32,7 @@ import dev.delivery.project.deliverymanagment.ui.Classes.Login;
  * Use the {@link local_entrega#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class local_entrega extends Fragment implements View.OnClickListener {
+public class local_entrega extends Fragment implements View.OnClickListener, Response.Listener, Response.ErrorListener {
 
     private View view;
     private EditText txtClient;
@@ -33,6 +43,10 @@ public class local_entrega extends Fragment implements View.OnClickListener {
     private Button btnEnvio;
     private Spinner spinnervendedor;
     private Spinner spinnerveiculo;
+    private CalendarView cvcalendario;
+    //volley
+    private RequestQueue requestQueue;
+    private JsonObjectRequest jsonObjectReq;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,37 +100,77 @@ public class local_entrega extends Fragment implements View.OnClickListener {
         this.txtLogradouro = (EditText) view.findViewById(R.id.txtLogradouro);
         this.spinnervendedor = (Spinner) view.findViewById(R.id.spinnervendedor);
         this.spinnerveiculo = (Spinner) view.findViewById(R.id.spinnerveiculo);
-        this.btnEnvio = (Button) view.findViewById(R.id.btnLogin);
+        this.cvcalendario = (CalendarView)view.findViewById(R.id.calendario);
+        this.btnEnvio = (Button) view.findViewById(R.id.btnEnvio);
         //*****************
         this.btnEnvio.setOnClickListener(this);
         //----------------------------------
-
+        this.requestQueue = Volley.newRequestQueue(view.getContext());
+        //inicializando a fila de requests do SO
+        this.requestQueue.start();
         // Inflate the layout for this fragment
-        this.view = inflater.inflate(R.layout.fragment_login_fragment, container, false);
+        this.view = inflater.inflate(R.layout.fragment_local_entrega, container, false);
         return this.view;
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btnLogin){
+        if (view.getId() == R.id.btnEnvio){
             Local lcl = new Local();
             lcl.setClient(this.txtClient.getText().toString());
             lcl.setBairro(this.txtBairro.getText().toString());
-            //lcl.setCpf(this.txtCpf.getText());
+            //lcl.setCpf(this.txtCpf.Integer.parseInt(getText()));
             lcl.setLogradouro(this.txtLogradouro.getText().toString());
             lcl.setContato(this.txtContact.getText().toString());
-            //lcl. = (spinnerveiculo.getSelectedItem().toString());
-            //lcl. = (spinnervendedor.getSelectedItem().toString());
-
+            lcl.setVeiculo(this.spinnerveiculo.getSelectedItem().toString());
+            lcl.setVendedor(this.spinnervendedor.getSelectedItem().toString());
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String dataSelecionada = formato.format(new Date(cvcalendario.getDate()));
+            lcl.setData(dataSelecionada);
             //msg
             Snackbar mySnackbar = Snackbar.make(view, "Cliente " + lcl.getClient(), Snackbar.LENGTH_SHORT);
             mySnackbar.show();
+
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/segServer/rest/usuario",lcl.toJsonObject(), this, this);
+            requestQueue.add(jsonObjectReq);
 
             txtClient.setText("");
             txtContact.setText("");
             txtCpf.setText("");
             txtBairro.setText("");
             txtLogradouro.setText("");
+        }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Snackbar mensagem = Snackbar.
+                make(view, "Ops! Houve um problema ao realizar o cadastro: " + error.toString(),Snackbar.LENGTH_LONG);
+        mensagem.show();
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        String resposta = response.toString();
+        try {
+            if (resposta.equals("500")) {
+                Snackbar mensagem = Snackbar.make(view, "Erro! = " + resposta, Snackbar.LENGTH_LONG);
+                mensagem.show();
+            } else {
+//sucesso
+//limpar campos da tela
+                txtClient.setText("");
+                txtContact.setText("");
+                txtCpf.setText("");
+                txtBairro.setText("");
+                txtLogradouro.setText("");
+//mensagem de sucesso
+                Snackbar mensagem = Snackbar.make(view, "Sucesso! = " + resposta, Snackbar.LENGTH_LONG);
+                mensagem.show();
+            }
+        } catch
+        (Exception e) {
+            e.printStackTrace();
         }
     }
 }
