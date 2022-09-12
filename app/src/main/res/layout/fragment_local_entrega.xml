@@ -15,9 +15,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
             <EditText
                 android:id="@+id/txtClient"
                 android:layout_width="match_parent"
@@ -81,9 +78,7 @@
                 android:layout_height="65dp"
                 android:text="ENVIAR ENTREGA"
                 app:backgroundTint="#FF2A2A" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+
 
         </LinearLayout>
     </ScrollView>

@@ -119,7 +119,7 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
             Local lcl = new Local();
             lcl.setClient(this.txtClient.getText().toString());
             lcl.setBairro(this.txtBairro.getText().toString());
-            //lcl.setCpf(this.txtCpf.Integer.parseInt(getText()));
+            lcl.setCpf(this.txtCpf.getId());
             lcl.setLogradouro(this.txtLogradouro.getText().toString());
             lcl.setContato(this.txtContact.getText().toString());
             lcl.setVeiculo(this.spinnerveiculo.getSelectedItem().toString());
