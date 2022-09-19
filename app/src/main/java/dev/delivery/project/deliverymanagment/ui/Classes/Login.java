@@ -5,6 +5,18 @@ import android.widget.EditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
+
+//essa classe vai ser modificada futuramente, a classe em funcionamento é a local_entrega
+
+
+
+
+
+
+
+
 public class Login {
     private String user;
     private String password;

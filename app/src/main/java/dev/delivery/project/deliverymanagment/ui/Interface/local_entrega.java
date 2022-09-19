@@ -25,7 +25,6 @@ import java.util.Date;
 
 import dev.delivery.project.deliverymanagment.R;
 import dev.delivery.project.deliverymanagment.ui.Classes.Local;
-import dev.delivery.project.deliverymanagment.ui.Classes.Login;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,7 +90,7 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        this.view = inflater.inflate(R.layout.fragment_local_entrega, container, false);
 
         this.txtClient = (EditText) view.findViewById(R.id.txtClient);
         this.txtBairro= (EditText) view.findViewById(R.id.txtBairro);
@@ -109,7 +108,7 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
         //inicializando a fila de requests do SO
         this.requestQueue.start();
         // Inflate the layout for this fragment
-        this.view = inflater.inflate(R.layout.fragment_local_entrega, container, false);
+
         return this.view;
     }
 
@@ -126,12 +125,12 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
             lcl.setVendedor(this.spinnervendedor.getSelectedItem().toString());
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String dataSelecionada = formato.format(new Date(cvcalendario.getDate()));
-            lcl.setData(dataSelecionada);
+            lcl.setDataentrega(dataSelecionada);
             //msg
             Snackbar mySnackbar = Snackbar.make(view, "Cliente " + lcl.getClient(), Snackbar.LENGTH_SHORT);
             mySnackbar.show();
 
-            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/segServer/rest/usuario",lcl.toJsonObject(), this, this);
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/local",lcl.toJsonObject(), this, this);
             requestQueue.add(jsonObjectReq);
 
             txtClient.setText("");
@@ -145,7 +144,7 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
     @Override
     public void onErrorResponse(VolleyError error) {
         Snackbar mensagem = Snackbar.
-                make(view, "Ops! Houve um problema ao realizar o cadastro: " + error.toString(),Snackbar.LENGTH_LONG);
+                make(view, "Ops! Houve um problema ao realizar a entrega: " + error.toString(),Snackbar.LENGTH_LONG);
         mensagem.show();
     }
 

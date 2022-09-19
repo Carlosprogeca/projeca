@@ -16,11 +16,20 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.text.BreakIterator;
-
 import dev.delivery.project.deliverymanagment.R;
-import dev.delivery.project.deliverymanagment.ui.Classes.Cadastro;
+import dev.delivery.project.deliverymanagment.ui.Classes.Usuario;
 import dev.delivery.project.deliverymanagment.ui.Classes.Login;
+
+
+
+//essa classe vai ser modificada futuramente, a classe em funcionamento é a local_entrega
+
+
+
+
+
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -119,15 +128,15 @@ public class login_fragment extends Fragment implements View.OnClickListener,
             txtPassword.setText("");
             txtUser.setText("");
             //enviar objeto para o REST Server
-            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/segServer/rest/usuario", usr.toJsonObject(), this, this);
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/login", usr.toJsonObject(), this, this);
             requestQueue.add(jsonObjectReq);
         }
 
         if (view.getId() == R.id.btnCadastro) {
-            Cadastro usr = new Cadastro();
-            usr.setCaduser(this.txtCadUser.getText().toString());
-            usr.setCadpassword(this.txtCadPassword.getText().toString());
-            usr.setCademail(this.txtCadEmail.getText().toString());
+            Usuario usr = new Usuario();
+            usr.setUsername(this.txtCadUser.getText().toString());
+            usr.setPassword(this.txtCadPassword.getText().toString());
+            usr.setEmail(this.txtCadEmail.getText().toString());
 
             //msg
             Snackbar mySnackbar = Snackbar.make(view, "Cadastrado ", Snackbar.LENGTH_SHORT);
@@ -137,7 +146,7 @@ public class login_fragment extends Fragment implements View.OnClickListener,
             txtCadPassword.setText("");
             txtCadEmail.setText("");
             //enviar objeto para o REST Server
-            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/segServer/rest/usuario", usr.toJsonObject(), this, this);
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/login", usr.toJsonObject(), this, this);
             requestQueue.add(jsonObjectReq);
         }
     }

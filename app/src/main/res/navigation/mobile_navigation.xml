@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/local_entrega"
+        android:id="@+id/navigation_local_entrega"
         android:name="dev.delivery.project.deliverymanagment.ui.Interface.local_entrega"
         android:label="fragment_local_entrega"
         tools:layout="@layout/fragment_local_entrega" />
@@ -28,9 +28,4 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_notifications" />
 
-    <fragment
-        android:id="@+id/navigation_login_fragment"
-        android:name="dev.delivery.project.deliverymanagment.ui.Interface.login_fragment"
-        android:label="@string/title_login"
-        tools:layout="@layout/fragment_login_fragment" />
 </navigation>
