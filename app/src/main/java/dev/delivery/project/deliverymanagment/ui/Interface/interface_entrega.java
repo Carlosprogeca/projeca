@@ -24,14 +24,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import dev.delivery.project.deliverymanagment.R;
-import dev.delivery.project.deliverymanagment.ui.Classes.Local;
+import dev.delivery.project.deliverymanagment.ui.Classes.Entrega;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link local_entrega#newInstance} factory method to
+ * Use the {@link interface_entrega#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class local_entrega extends Fragment implements View.OnClickListener, Response.Listener, Response.ErrorListener {
+public class interface_entrega extends Fragment implements View.OnClickListener, Response.Listener, Response.ErrorListener {
 
     private View view;
     private EditText txtClient;
@@ -56,7 +56,7 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
     private String mParam1;
     private String mParam2;
 
-    public local_entrega() {
+    public interface_entrega() {
         // Required empty public constructor
     }
 
@@ -69,8 +69,8 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
      * @return A new instance of fragment local_entrega.
      */
     // TODO: Rename and change types and number of parameters
-    public static local_entrega newInstance(String param1, String param2) {
-        local_entrega fragment = new local_entrega();
+    public static interface_entrega newInstance(String param1, String param2) {
+        interface_entrega fragment = new interface_entrega();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -90,7 +90,7 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.fragment_local_entrega, container, false);
+        this.view = inflater.inflate(R.layout.fragment_interface_entrega, container, false);
 
         this.txtClient = (EditText) view.findViewById(R.id.txtClient);
         this.txtBairro= (EditText) view.findViewById(R.id.txtBairro);
@@ -115,8 +115,8 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnEnvio){
-            Local lcl = new Local();
-            lcl.setClient(this.txtClient.getText().toString());
+            Entrega lcl = new Entrega();
+            lcl.setCliente(this.txtClient.getText().toString());
             lcl.setBairro(this.txtBairro.getText().toString());
             lcl.setCpf(this.txtCpf.getId());
             lcl.setLogradouro(this.txtLogradouro.getText().toString());
@@ -127,7 +127,7 @@ public class local_entrega extends Fragment implements View.OnClickListener, Res
             String dataSelecionada = formato.format(new Date(cvcalendario.getDate()));
             lcl.setDataentrega(dataSelecionada);
             //msg
-            Snackbar mySnackbar = Snackbar.make(view, "Cliente " + lcl.getClient(), Snackbar.LENGTH_SHORT);
+            Snackbar mySnackbar = Snackbar.make(view, "Cliente " + lcl.getCliente(), Snackbar.LENGTH_SHORT);
             mySnackbar.show();
 
             jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/local",lcl.toJsonObject(), this, this);

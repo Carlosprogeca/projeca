@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_local_entrega"
-        android:name="dev.delivery.project.deliverymanagment.ui.Interface.local_entrega"
+        android:name="dev.delivery.project.deliverymanagment.ui.Interface.interface_entrega"
         android:label="fragment_local_entrega"
-        tools:layout="@layout/fragment_local_entrega" />
+        tools:layout="@layout/fragment_interface_entrega" />
 
     <fragment
         android:id="@+id/navigation_notifications"

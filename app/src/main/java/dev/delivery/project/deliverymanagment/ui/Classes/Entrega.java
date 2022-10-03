@@ -7,8 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Local {
-    private String client;
+public class Entrega {
+    private String cliente;
     private String logradouro;
     private String bairro;
     private String contato;
@@ -17,12 +17,12 @@ public class Local {
     private String veiculo;
     private String vendedor;
 
-    public String getClient() {
-        return client;
+    public String getCliente() {
+        return cliente;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
     public String getLogradouro() {
@@ -91,8 +91,8 @@ public class Local {
     }
 
     //CONSTRUTOR - iniciazaliza atributos
-    public Local () {
-        this.setClient("");
+    public Entrega() {
+        this.setCliente("");
         this.setLogradouro("");
         this.setBairro("");
         this.setContato("");
@@ -103,10 +103,10 @@ public class Local {
     }
 
     //CONSTRUTOR - inicializa atributos de um arquivo JSon
-    public Local (JSONObject jp) {
+    public Entrega(JSONObject jp) {
         try {
             Integer cpf = (int) jp.get("cpf");
-            this.setClient((String) jp.get("cliente"));
+            this.setCliente((String) jp.get("cliente"));
             this.setLogradouro((String) jp.get("logradouro"));
             this.setBairro((String) jp.get("bairro"));
             this.setContato((String) jp.get("contato"));
@@ -123,7 +123,7 @@ public class Local {
     public JSONObject toJsonObject() {
         JSONObject json = new JSONObject();
         try {
-            json.put("cliente", this.client);
+            json.put("cliente", this.cliente);
             json.put("logradouro", this.logradouro);
             json.put("bairro", this.bairro);
             json.put("cpf", this.cpf);

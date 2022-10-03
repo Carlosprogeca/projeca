@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_login">Log in</string>
+
     <string name="title_local">Entrega</string>
     <string-array name="opcoes_veiculo">
         <item>Selecione o Veiculo</item>
