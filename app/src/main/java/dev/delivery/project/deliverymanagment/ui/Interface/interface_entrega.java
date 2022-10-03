@@ -34,7 +34,7 @@ import dev.delivery.project.deliverymanagment.ui.Classes.Entrega;
 public class interface_entrega extends Fragment implements View.OnClickListener, Response.Listener, Response.ErrorListener {
 
     private View view;
-    private EditText txtClient;
+    private EditText txtCliente;
     private EditText txtLogradouro;
     private EditText txtCpf;
     private EditText txtBairro;
@@ -92,7 +92,7 @@ public class interface_entrega extends Fragment implements View.OnClickListener,
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_interface_entrega, container, false);
 
-        this.txtClient = (EditText) view.findViewById(R.id.txtClient);
+        this.txtCliente = (EditText) view.findViewById(R.id.txtClient);
         this.txtBairro= (EditText) view.findViewById(R.id.txtBairro);
         this.txtCpf = (EditText) view.findViewById(R.id.txtCpf);
         this.txtContact = (EditText) view.findViewById(R.id.txtContact);
@@ -115,25 +115,25 @@ public class interface_entrega extends Fragment implements View.OnClickListener,
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnEnvio){
-            Entrega lcl = new Entrega();
-            lcl.setCliente(this.txtClient.getText().toString());
-            lcl.setBairro(this.txtBairro.getText().toString());
-            lcl.setCpf(this.txtCpf.getId());
-            lcl.setLogradouro(this.txtLogradouro.getText().toString());
-            lcl.setContato(this.txtContact.getText().toString());
-            lcl.setVeiculo(this.spinnerveiculo.getSelectedItem().toString());
-            lcl.setVendedor(this.spinnervendedor.getSelectedItem().toString());
+            Entrega ent = new Entrega();
+            ent.setCliente(this.txtCliente.getText().toString());
+            ent.setBairro(this.txtBairro.getText().toString());
+            ent.setCpf(this.txtCpf.getId());
+            ent.setLogradouro(this.txtLogradouro.getText().toString());
+            ent.setContato(this.txtContact.getText().toString());
+            ent.setVeiculo(this.spinnerveiculo.getSelectedItem().toString());
+            ent.setVendedor(this.spinnervendedor.getSelectedItem().toString());
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String dataSelecionada = formato.format(new Date(cvcalendario.getDate()));
-            lcl.setDataentrega(dataSelecionada);
+            ent.setDataentrega(dataSelecionada);
             //msg
-            Snackbar mySnackbar = Snackbar.make(view, "Cliente " + lcl.getCliente(), Snackbar.LENGTH_SHORT);
+            Snackbar mySnackbar = Snackbar.make(view, "Cliente " + ent.getCliente(), Snackbar.LENGTH_SHORT);
             mySnackbar.show();
 
-            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/local",lcl.toJsonObject(), this, this);
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/entrega",ent.toJsonObject(), this, this);
             requestQueue.add(jsonObjectReq);
 
-            txtClient.setText("");
+            txtCliente.setText("");
             txtContact.setText("");
             txtCpf.setText("");
             txtBairro.setText("");
@@ -158,7 +158,7 @@ public class interface_entrega extends Fragment implements View.OnClickListener,
             } else {
 //sucesso
 //limpar campos da tela
-                txtClient.setText("");
+                txtCliente.setText("");
                 txtContact.setText("");
                 txtCpf.setText("");
                 txtBairro.setText("");

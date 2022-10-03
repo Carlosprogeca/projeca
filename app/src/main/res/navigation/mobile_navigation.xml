@@ -27,5 +27,10 @@
         android:name="dev.delivery.project.deliverymanagment.ui.notifications.NotificationsFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/inteface_login"
+        android:name="dev.delivery.project.deliverymanagment.ui.Interface.inteface_login"
+        android:label="fragment_inteface_login"
+        tools:layout="@layout/fragment_inteface_login" />
 
 </navigation>
