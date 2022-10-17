@@ -2,6 +2,15 @@ package dev.delivery.project.deliverymanagment.ui.Classes;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
+
+/*
+CLASSE EM CONSTRUÇÃO
+
+
+
+*/
 public class Login {
     private String usuario;
     private String senha;

@@ -2,12 +2,6 @@ package dev.delivery.project.deliverymanagment.ui.Classes;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.DateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,23 +56,19 @@ public class Entrega {
         this.cpf = cpf;
     }
 
-
-    public String getDataentrega() {
-        return dataentrega;
-    }
-
-
     public void setDataentrega(String dataentrega) {
-        DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            Date data = (Date) formato.parse(getDataentrega());
-            Instant instant = data.toInstant();
-            ZoneId zoneId = ZoneId.of ( "America/Sao_Paulo" );
-            ZonedDateTime zdt = ZonedDateTime.ofInstant ( instant , zoneId );
-            LocalDate dataBD = zdt.toLocalDate();
+            Date data = (Date) formato.parse(dataentrega);
+            //se chegar até aqui não deu erro no parser
+            this.dataentrega = dataentrega;
         } catch (ParseException e) {
             this.dataentrega = "";
         }
+    }
+
+    public String getDataentrega() {
+        return dataentrega;
     }
 
     public String getVeiculo() {
@@ -118,7 +108,7 @@ public class Entrega {
             this.setBairro((String) jp.get("bairro"));
             this.setContato((String) jp.get("contato"));
             boolean bool = Boolean.getBoolean(jp.get("aceite").toString());
-            this.setDataentrega((String) jp.get("data"));
+            this.setDataentrega((String) jp.get("dataentrega"));
             this.setVeiculo((String) jp.get("veiculo"));
             this.setVendedor((String) jp.get("vendedor"));
 
@@ -136,7 +126,7 @@ public class Entrega {
             json.put("bairro", this.bairro);
             json.put("cpf", this.cpf);
             json.put("contato", this.contato);
-            json.put("data", this.dataentrega);
+            json.put("dataentrega", this.dataentrega);
             json.put("veiculo", this.veiculo);
             json.put("vendedor", this.vendedor);
 

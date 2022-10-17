@@ -125,15 +125,16 @@ public class interface_entrega extends Fragment implements View.OnClickListener,
             ent.setVeiculo(this.spinnerveiculo.getSelectedItem().toString());
             ent.setVendedor(this.spinnervendedor.getSelectedItem().toString());
 
-            DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String dataSelecionada = formato.format(new Date(cvcalendario.getDate()));
-            ent.setDataentrega(dataSelecionada);
+            String dataConvertida = dataSelecionada.replace("/", "-");
+            ent.setDataentrega(dataConvertida);
 
             //msg
             Snackbar mySnackbar = Snackbar.make(view, "Cliente " + ent.getCliente(), Snackbar.LENGTH_SHORT);
             mySnackbar.show();
-
-            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://localhost:8080/deliverymanagmentrest/rest/entrega",ent.toJsonObject(), this, this);
+//10.0.2.2
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/entrega",ent.toJsonObject(), this, this);
             requestQueue.add(jsonObjectReq);
 
             txtCliente.setText("");
