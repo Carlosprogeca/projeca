@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -123,14 +124,16 @@ public class interface_entrega extends Fragment implements View.OnClickListener,
             ent.setContato(this.txtContact.getText().toString());
             ent.setVeiculo(this.spinnerveiculo.getSelectedItem().toString());
             ent.setVendedor(this.spinnervendedor.getSelectedItem().toString());
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+            DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
             String dataSelecionada = formato.format(new Date(cvcalendario.getDate()));
             ent.setDataentrega(dataSelecionada);
+
             //msg
             Snackbar mySnackbar = Snackbar.make(view, "Cliente " + ent.getCliente(), Snackbar.LENGTH_SHORT);
             mySnackbar.show();
 
-            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/entrega",ent.toJsonObject(), this, this);
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://localhost:8080/deliverymanagmentrest/rest/entrega",ent.toJsonObject(), this, this);
             requestQueue.add(jsonObjectReq);
 
             txtCliente.setText("");

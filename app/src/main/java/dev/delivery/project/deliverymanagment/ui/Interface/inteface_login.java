@@ -101,7 +101,7 @@ public class inteface_login extends Fragment implements View.OnClickListener, Re
             lgn.setSenha(this.txtSenha.getText().toString());
 
 
-            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8080/deliverymanagmentrest/rest/login",lgn.toJsonObject(), this, this);
+            jsonObjectReq = new JsonObjectRequest(Request.Method.POST, "http://localhost:8080/deliverymanagmentrest/rest/login",lgn.toJsonObject(), this, this);
             requestQueue.add(jsonObjectReq);
 
             txtSenha.setText("");

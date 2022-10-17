@@ -3,9 +3,14 @@ package dev.delivery.project.deliverymanagment.ui.Classes;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Entrega {
     private String cliente;
@@ -64,11 +69,13 @@ public class Entrega {
 
 
     public void setDataentrega(String dataentrega) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            Date data = (Date) formato.parse(dataentrega);
-            //se chegar até aqui não deu erro no parser
-            this.dataentrega = dataentrega;
+            Date data = (Date) formato.parse(getDataentrega());
+            Instant instant = data.toInstant();
+            ZoneId zoneId = ZoneId.of ( "America/Sao_Paulo" );
+            ZonedDateTime zdt = ZonedDateTime.ofInstant ( instant , zoneId );
+            LocalDate dataBD = zdt.toLocalDate();
         } catch (ParseException e) {
             this.dataentrega = "";
         }
@@ -119,6 +126,7 @@ public class Entrega {
             e.printStackTrace();
         }
     }
+
     //Metodo retorna o objeto com dados no formato JSON
     public JSONObject toJsonObject() {
         JSONObject json = new JSONObject();
