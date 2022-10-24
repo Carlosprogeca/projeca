@@ -107,7 +107,6 @@ public class Entrega {
             this.setLogradouro((String) jp.get("logradouro"));
             this.setBairro((String) jp.get("bairro"));
             this.setContato((String) jp.get("contato"));
-            boolean bool = Boolean.getBoolean(jp.get("aceite").toString());
             this.setDataentrega((String) jp.get("dataentrega"));
             this.setVeiculo((String) jp.get("veiculo"));
             this.setVendedor((String) jp.get("vendedor"));

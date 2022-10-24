@@ -28,9 +28,9 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_notifications" />
     <fragment
-        android:id="@+id/inteface_login"
-        android:name="dev.delivery.project.deliverymanagment.ui.Interface.inteface_login"
-        android:label="fragment_inteface_login"
-        tools:layout="@layout/fragment_inteface_login" />
+        android:id="@+id/navigation_consulta_entrega"
+        android:name="dev.delivery.project.deliverymanagment.InterfaceConsulta"
+        android:label="@string/title_consulta"
+        tools:layout="@layout/fragment_interface_consulta_list" />
 
 </navigation>
